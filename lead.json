@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Acme Corp",
+    "source": "Referral",
+    "salesAgent": "68824af364b8493eea599fb7",
+    "status": "New",
+    "tags": ["High Value", "Follow-up"],
+    "timeToClose": 30,
+    "priority": "High"
+  },
+  {
+    "name": "Beta Inc",
+    "source": "Cold Call",
+    "salesAgent": "68824af364b8493eea599fb5",
+    "status": "Contacted",
+    "tags": ["Urgent"],
+    "timeToClose": 15,
+    "priority": "Medium"
+  },
+  {
+    "name": "Gamma Ltd",
+    "source": "Email",
+    "salesAgent": "68824af364b8493eea599fb3",
+    "status": "Proposal Sent",
+    "tags": ["Follow-up"],
+    "timeToClose": 20,
+    "priority": "Low"
+  },
+  {
+    "name": "Zeta Industries",
+    "source": "Other",
+    "salesAgent": "68824af164b8493eea599fb0",
+    "status": "Closed",
+    "tags": ["Converted"],
+    "timeToClose": 10,
+    "priority": "Medium"
+  }
+]
