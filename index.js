@@ -25,6 +25,9 @@ const tagRoutes = require("./routes/tag.routes");
 // seedLead();
 // seedComment();
 // seedTag();
+app.get("/", (req, res) => {
+  res.send("API is running 🚀");
+});
 app.get("/favicon.ico", (req, res) => res.status(204).end());
 app.use("/agents", salesagentRoutes);
 app.use("/leads", leadRoutes)
