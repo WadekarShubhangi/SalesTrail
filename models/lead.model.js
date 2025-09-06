@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-// Lead Schema
 const leadSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -23,7 +22,7 @@ const leadSchema = new mongoose.Schema({
     default: 'New',
   },
   tags: {
-    type: [String],  // Array of strings for tags (e.g., High Value, Follow-up)
+    type: [String],
   },
   timeToClose: {
     type: Number,

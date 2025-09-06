@@ -11,7 +11,7 @@ router.get("/last-week", async (req, res) => {
 
     const closedLeads = await Lead.find({
       status: "Closed",
-      updatedAt: { $gte: oneWeekAgo }
+      closedAt: { $gte: oneWeekAgo }
     });
 
     res.status(200).json({ leads: closedLeads });
@@ -23,11 +23,11 @@ router.get("/last-week", async (req, res) => {
 // 2. GET /report/pipeline — Total leads in pipeline grouped by status
 router.get("/pipeline", async (req, res) => {
   try {
-    const pipelineLeads = await Lead.find({
+    const totalLeadsInPipeline  = await Lead.find({
       status: { $ne: "Closed" }
     });
 
-    res.status(200).json({ leads: pipelineLeads });
+    res.status(200).json({ totalLeadsInPipeline  });
   } catch (err) {
     res.status(500).json({ error: "Something went wrong from server." });
   }
@@ -37,15 +37,17 @@ router.get("/pipeline", async (req, res) => {
 // 3. GET /report/closed-by-agent — Leads closed per sales agent
 router.get("/closed-by-agent", async (req, res) => {
   try {
-    const leads = await Lead.find({
-      status: "Closed",
-      closedBy: "agent"
-    });
-    res.status(200).json({ leads });
+    const closedLeads = await Lead.aggregate([
+      { $match: { status: "Closed" } },
+      { $group: { _id: "$salesAgent.name", closedLeads: { $sum: 1 } } }
+    ]);
+
+    res.status(200).json(closedLeads);
   } catch (err) {
     res.status(500).json({ error: "Something went wrong from server." });
   }
 });
+
 
 
 module.exports = router;
